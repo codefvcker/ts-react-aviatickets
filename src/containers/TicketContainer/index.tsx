@@ -5,11 +5,15 @@ import { useSelector, useDispatch } from "react-redux";
 import { TAppState } from "../../store/store";
 import { ITicket } from "../../entities/interfaces";
 import { getTicketsPack } from "../../store/actions/ticketsActions";
+import { TCheckbox } from "../../entities/types";
 
 export const TicketContainer: React.FC = () => {
   const dispatch = useDispatch();
   const tickets = useSelector<TAppState, ITicket[]>(
     (state) => state.tickets.tickets
+  );
+  const filters = useSelector<TAppState, TCheckbox[]>(
+    (state) => state.tickets.filters
   );
 
   const renderTickets = (tickets: ITicket[]) => {
@@ -26,6 +30,7 @@ export const TicketContainer: React.FC = () => {
   };
 
   console.log("from CONTYNIR", tickets);
+  console.log("from CONTYNIR FILTERS", filters);
 
   useEffect(() => {
     dispatch(getTicketsPack());

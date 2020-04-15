@@ -1,6 +1,6 @@
-import { TAction } from "./../../entities/types";
+import { TAction, TToggleFilter } from "./../../entities/types";
 // import { ThunkAction } from "redux-thunk";
-import { GET_TICKETS_PACK } from "./../constants";
+import { GET_TICKETS_PACK, TOGGLE_FILTER } from "./../constants";
 import { Dispatch } from "redux";
 
 export const getTicketsPack = () => {
@@ -15,6 +15,7 @@ export const getTicketsPack = () => {
       );
       const { tickets, stop } = await resPack.json();
       console.log("iz vntr", tickets, stop);
+      console.log("searchId", searchId);
       dispatch({
         type: GET_TICKETS_PACK,
         tickets,
@@ -25,3 +26,8 @@ export const getTicketsPack = () => {
     }
   };
 };
+
+export const toggleFilter = (id: number): TToggleFilter => ({
+  type: TOGGLE_FILTER,
+  id,
+});

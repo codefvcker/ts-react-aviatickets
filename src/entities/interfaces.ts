@@ -1,3 +1,5 @@
+import { TCheckbox } from "./types";
+
 export interface ITicket {
   price: number;
   carrier: string;
@@ -23,4 +25,5 @@ export interface ITicketStoreStructure {
   searchId: string;
   tickets: ITicket[];
   stop?: boolean;
+  filters: TCheckbox[];
 }

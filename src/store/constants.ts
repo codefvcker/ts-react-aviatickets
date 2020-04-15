@@ -1,5 +1,3 @@
 export const GET_TICKETS_PACK = "GET_TICKETS_PACK";
-
-export type TGetTicketsPack = {
-  type: typeof GET_TICKETS_PACK;
-};
+export const TOGGLE_FILTER = "TOGGLE_FILTER";
+export const SET_FILTER_PARAMS = "SET_FILTER_PARAMS";

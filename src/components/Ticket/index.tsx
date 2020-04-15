@@ -26,6 +26,16 @@ export const Ticket: React.FC<ITicket> = ({ carrier, price, segments }) => {
     return actualTime;
   };
 
+  const renderStops = (stops: string[]) => {
+    if (!stops.length) {
+      return "Без пересадок";
+    } else if (stops.length === 1) {
+      return `${stops.length} пересадка`;
+    }
+
+    return `${stops.length} пересадки`;
+  };
+
   const renderTicketInfo = (segments: TSegment[]) => {
     return segments.map((segment, i) => (
       <div key={Date.now() + segments[i].duration} className="ticket__info-row">
@@ -40,7 +50,7 @@ export const Ticket: React.FC<ITicket> = ({ carrier, price, segments }) => {
           <span>{timeConvert(segments[i].duration)}</span>
         </div>
         <div className="ticket__info-piece">
-          <span>{segments[i].stops.length} пересадок</span>
+          <span>{renderStops(segments[i].stops)} </span>
           <span>{segments[i].stops.join(", ")}</span>
         </div>
       </div>
@@ -51,7 +61,9 @@ export const Ticket: React.FC<ITicket> = ({ carrier, price, segments }) => {
     <Paper elevation={3} className="ticket">
       <div className="ticket__header">
         <div className="ticket__price">{price}₽</div>
-        <div className="ticket__company-logo">Logo</div>
+        <div className="ticket__company-logo">
+          <img src={`//pics.avs.io/99/36/${carrier}.png`} alt="logo" />
+        </div>
       </div>
       <div className="ticket__info">{renderTicketInfo(segments)}</div>
     </Paper>
